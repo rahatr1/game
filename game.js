@@ -18,7 +18,7 @@ $(document).keypress(function() {
   }
 });
 
-$(document).TouchEvent(function() {
+document.addEventListener("touchstart", e => {
   if (!started) {
     $("#level-title").text("Level " + level);
     nextSequence();
