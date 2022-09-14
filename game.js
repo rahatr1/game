@@ -19,11 +19,14 @@ $(document).keypress(function() {
 });
 
 document.addEventListener("touchstart", e => {
-  if (!started) {
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
-  }
+  
+    setTimeout(function (){
+      if (!started) {
+      $("#level-title").text("Level " + level);
+      nextSequence();
+      started = true;
+      }
+    },3000)
 });
 
 $(".btn").click(function() {
