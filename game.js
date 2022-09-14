@@ -1,3 +1,6 @@
+if ($(window).width() < 1200) {
+  $('#level-title').text('Touch Anywhere To Start');
+}
 
 var buttonColours = ["red", "blue", "green", "yellow"];
 
@@ -8,6 +11,14 @@ var started = false;
 var level = 0;
 
 $(document).keypress(function() {
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+});
+
+$(document).TouchEvent(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
     nextSequence();
@@ -34,10 +45,22 @@ function checkAnswer(currentLevel) {
           nextSequence();
         }, 1000);
       }
-    } else {
+    }else if($(window).width() < 1200){
       playSound("wrong");
       $("body").addClass("game-over");
-      $("#level-title").text("Game Over, Press Any Key to Restart");
+      $("#level-title").text("Game Over, Touch Anywhere To Restart");
+
+      setTimeout(function () {
+        $("body").removeClass("game-over");
+      }, 200);
+
+      startOver();
+    }
+    
+    else {
+      playSound("wrong");
+      $("body").addClass("game-over");
+      $("#level-title").text("Game Over, Press Any Key To Restart");
 
       setTimeout(function () {
         $("body").removeClass("game-over");
@@ -77,3 +100,5 @@ function startOver() {
   gamePattern = [];
   started = false;
 }
+
+
