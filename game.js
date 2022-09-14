@@ -18,16 +18,13 @@ $(document).keypress(function() {
   }
 });
 
-document.addEventListener("touchstart", e => {
-  
-    setTimeout(function (){
-      if (!started) {
-      $("#level-title").text("Level " + level);
-      nextSequence();
-      started = true;
-      }
-    },3000)
-});
+document.ontouchstart = function() {
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+};
 
 $(".btn").click(function() {
 
@@ -52,11 +49,10 @@ function checkAnswer(currentLevel) {
       playSound("wrong");
       $("body").addClass("game-over");
       $("#level-title").text("Game Over, Touch Anywhere To Restart");
-
       setTimeout(function () {
         $("body").removeClass("game-over");
+        
       }, 200);
-
       startOver();
     }
     
@@ -102,6 +98,7 @@ function startOver() {
   level = 0;
   gamePattern = [];
   started = false;
+  
 }
 
 
