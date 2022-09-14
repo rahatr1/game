@@ -12,17 +12,25 @@ var level = 0;
 
 $(document).keypress(function() {
   if (!started) {
-    $("#level-title").text("Level " + level);
+    setTimeout(function(){
+      $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
-  }
-});
+    },2000
+    ) 
+}
+}
+);
 
 document.ontouchstart = function() {
   if (!started) {
-    $("#level-title").text("Level " + level);
+    setTimeout(function(){
+      $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
+    },2000
+    )
+    
   }
 };
 
@@ -93,6 +101,7 @@ function playSound(name) {
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
+
 
 function startOver() {
   level = 0;
